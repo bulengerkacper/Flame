@@ -3,6 +3,7 @@ use server::Server;
 
 use ssh2::Session;
 use std::net::TcpStream;
+use std::io::Read;
 
 fn main() {
     let server = Server {
@@ -11,7 +12,6 @@ fn main() {
         password: String::from("pop"),
     };
 
-    println!("Hello, world!");
     let hostname = &server.hostname[..];
     let username = &server.username[..];
     let password = &server.password[..];
