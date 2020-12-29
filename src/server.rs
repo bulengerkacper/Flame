@@ -1,16 +1,9 @@
-struct Server {
-    hostname: String,
-    username: String,
-    password: String,
+pub struct Server {
+    pub hostname: String,
+    pub username: String,
+    pub password: String,
 }
 
 impl Server {
-    pub fn new(hostname: String,username:String, password: String) -> Server {
-        Server {
-            hostname: hostname,
-            username: username,
-            password: password,
-        }
-    }
 
 }
