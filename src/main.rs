@@ -2,8 +2,10 @@ pub mod server;
 use server::Server;
 
 use ssh2::Session;
-use std::io::Read;
 use std::net::TcpStream;
+use std::io::Read;
+
+
 
 fn main() {
     let server = Server {
@@ -31,5 +33,4 @@ fn main() {
     channel.wait_close();
     println!("{}", channel.exit_status().unwrap());
 
-    assert!(sess.authenticated());
 }
