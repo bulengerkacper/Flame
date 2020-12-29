@@ -1,8 +1,8 @@
 pub mod server;
 use server::Server;
 
-use std::net::TcpStream;
 use ssh2::Session;
+use std::net::TcpStream;
 
 fn main() {
     let server = Server {
@@ -20,8 +20,16 @@ fn main() {
     let mut sess = Session::new().unwrap();
     sess.set_tcp_stream(tcp);
     sess.handshake().unwrap();
-    
-    sess.userauth_password(&username,&password).unwrap();
+
+    sess.userauth_password(&username, &password).unwrap();
+
+    let mut channel = sess.channel_session().unwrap();
+    channel.exec("ls").unwrap();
+    let mut s = String::new();
+    channel.read_to_string(&mut s).unwrap();
+    println!("{}", s);
+    channel.wait_close();
+    println!("{}", channel.exit_status().unwrap());
+
     assert!(sess.authenticated());
 }
-
