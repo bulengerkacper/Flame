@@ -1,4 +1,4 @@
-# Flame
+# Flame [in development phase]
 Allows to fully remotely remove your resources in order to prevent of unwanted physical access.
 
 # SAFETY 
