@@ -2,8 +2,8 @@ pub mod server;
 use server::Server;
 
 use ssh2::Session;
-use std::net::TcpStream;
 use std::io::Read;
+use std::net::TcpStream;
 
 fn main() {
     let server = Server {
