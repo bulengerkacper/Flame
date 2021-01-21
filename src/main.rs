@@ -9,9 +9,9 @@ use std::io::Read;
 
 fn main() {
     let server = Server {
-        hostname: String::from("172.17.0.2:22"),
+        hostname: String::from("0.0.0.0:49154"),
         username: String::from("root"),
-        password: String::from("pop"),
+        password: String::from("root"),
     };
 
     let hostname = &server.hostname[..];
@@ -26,7 +26,7 @@ fn main() {
     sess.userauth_password(&username, &password).unwrap();
 
     let mut channel = sess.channel_session().unwrap();
-    channel.exec("ls").unwrap();
+    channel.exec("ps").unwrap();
     let mut s = String::new();
     channel.read_to_string(&mut s).unwrap();
     println!("{}", s);

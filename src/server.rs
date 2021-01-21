@@ -11,7 +11,7 @@ pub struct Server {
 impl Server {
     fn execute_command(self, sess: &mut Session, chanel: &mut Channel) {
         let mut channel = sess.channel_session().unwrap();
-        channel.exec("ls").unwrap();
+        channel.exec("ps").unwrap();
         let mut s = String::new();
         channel.read_to_string(&mut s).unwrap();
         println!("{}", s);
