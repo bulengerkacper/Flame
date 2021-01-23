@@ -9,13 +9,15 @@ pub struct Server {
 }
 
 impl Server {
-    fn execute_command(self, sess: &mut Session, chanel: &mut Channel) {
+    fn execute_command(self, sess: &mut Session, chanel: &mut Channel,command: &str) {
         let mut channel = sess.channel_session().unwrap();
-        channel.exec("ps").unwrap();
+        channel.exec(command).unwrap();
         let mut s = String::new();
         channel.read_to_string(&mut s).unwrap();
         println!("{}", s);
         channel.wait_close();
         println!("{}", channel.exit_status().unwrap());
     }
+
+
 }
