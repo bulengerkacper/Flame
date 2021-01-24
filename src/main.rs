@@ -2,35 +2,22 @@ pub mod server;
 use server::Server;
 
 use ssh2::Session;
-use std::net::TcpStream;
+use std::env;
 use std::io::Read;
 
 
-
 fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let hostname = &args[1]; //x.x.x.x:port
+    let username = &args[2];
+    let password = &args[3];
+
     let server = Server {
-        hostname: String::from("192.168.1.30:22"),
-        username: String::from("root"),
-        password: String::from("root"),
+        hostname: String::from(hostname),
+        username: String::from(username),
+        password: String::from(password),
     };
 
-    let hostname = &server.hostname[..];
-    let username = &server.username[..];
-    let password = &server.password[..];
-
-    let tcp = TcpStream::connect(&hostname).unwrap();
-    let mut sess = Session::new().unwrap();
-    sess.set_tcp_stream(tcp);
-    sess.handshake().unwrap();
-
-    sess.userauth_password(&username, &password).unwrap();
-
-    let mut channel = sess.channel_session().unwrap();
-    channel.exec("ps").unwrap();
-    let mut s = String::new();
-    channel.read_to_string(&mut s).unwrap();
-    println!("{}", s);
-    channel.wait_close();
-    println!("{}", channel.exit_status().unwrap());
-
+    server.execute_command("ls -al")
 }

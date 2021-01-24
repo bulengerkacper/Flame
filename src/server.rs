@@ -1,6 +1,7 @@
 extern crate ssh2;
 use ssh2::{Channel, Session};
 use std::io::Read;
+use std::net::TcpStream;
 
 pub struct Server {
     pub hostname: String,
@@ -9,7 +10,12 @@ pub struct Server {
 }
 
 impl Server {
-    fn execute_command(self, sess: &mut Session, chanel: &mut Channel,command: &str) {
+    pub fn execute_command(&self,command: &str) {
+        let tcp = TcpStream::connect(&self.hostname).unwrap();
+        let mut sess = Session::new().unwrap();
+        sess.set_tcp_stream(tcp);
+        sess.handshake().unwrap();
+        sess.userauth_password(&self.username, &self.password).unwrap();
         let mut channel = sess.channel_session().unwrap();
         channel.exec(command).unwrap();
         let mut s = String::new();
@@ -18,6 +24,4 @@ impl Server {
         channel.wait_close();
         println!("{}", channel.exit_status().unwrap());
     }
-
-
 }
