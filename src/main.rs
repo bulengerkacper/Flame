@@ -1,10 +1,7 @@
 pub mod server;
 use server::Server;
 
-use ssh2::Session;
 use std::env;
-use std::io::Read;
-
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -19,5 +16,11 @@ fn main() {
         password: String::from(password),
     };
 
-    server.execute_command("ls -al")
+    let disks = server.execute_command("df -h --output=source | grep dev/");
+    for disk_name in disks.split(" ") {
+        println!("{}", disk_name);
+        let command = "cat /dev/urandom > ".to_owned() + disk_name;
+        let data = server.execute_command(&command);
+        println! {"{}",data};
+    }
 }
