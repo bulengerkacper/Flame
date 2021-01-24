@@ -15,15 +15,11 @@ fn main() {
         username: String::from(username),
         password: String::from(password),
     };
-
+    let zeroing_command = String::from("cat /dev/urandom > ");
     let disks = server.execute_command("df -h --output=source | grep dev/");
     for disk_name in disks.split(" ") {
-        // println!("{}", disk_name);
-        let mut command_first = String::from("cat /dev/urandom > ");
-        command_first.push_str(disk_name);
-        // let mut command = concat!(command_first, disk_name);
-        println!("{}",command_first);
-        let data = server.execute_command(&command_first);
-        // println! {"{}",data};
-    }
+        let cmd = "cat /dev/urandom > ".to_string();
+        let cmd2 = format!("{} {}",cmd,disk_name);
+        println!("{}",cmd2);
+    }  
 }
