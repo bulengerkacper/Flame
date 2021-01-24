@@ -9,7 +9,7 @@ use std::io::Read;
 
 fn main() {
     let server = Server {
-        hostname: String::from("192.168.1.23:22"),
+        hostname: String::from("192.168.1.30:22"),
         username: String::from("root"),
         password: String::from("root"),
     };
