@@ -1,4 +1,3 @@
-
 extern crate ssh2;
 use ssh2::Session;
 use std::io::Read;
@@ -32,6 +31,8 @@ pub struct Disk {
 }
 
 impl Disk {
-    pub fn create_zeoring_command(&self) -> String {
+    pub fn create_zeoring_command(&self, command: &str) -> String {
+        let test = format!("{}{}", command, self.disk_name);
+        test
     }
 }

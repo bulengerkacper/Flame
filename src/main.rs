@@ -25,9 +25,11 @@ fn main() {
         disks.push(disk)
     }
 
-    let command_creation = |disk: Disk| -> String { disk.create_zeoring_command() };
+    let command_creation =
+        |disk: Disk| -> String { disk.create_zeoring_command("cat /dev/urandom >") };
 
     for disk in disks {
         let command = command_creation(disk);
+        println!("{}", command);
     }
 }
