@@ -1,5 +1,5 @@
 extern crate ssh2;
-use ssh2::{Channel, Session};
+use ssh2::Session;
 use std::io::Read;
 use std::net::TcpStream;
 
@@ -23,5 +23,18 @@ impl Server {
         channel.read_to_string(&mut s).unwrap();
         channel.wait_close();
         s
+    }
+}
+
+pub struct Disk {
+    pub disk_name: String,
+}
+
+impl Disk {
+    pub fn create_zeoring_command(&self) -> String {
+        let main = String::from("cat /dev/urandom > ");
+        let mut request = main.clone();
+        request.push_str(&self.disk_name);
+        request
     }
 }
