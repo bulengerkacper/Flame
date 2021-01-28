@@ -1,3 +1,4 @@
+
 extern crate ssh2;
 use ssh2::Session;
 use std::io::Read;
@@ -32,9 +33,5 @@ pub struct Disk {
 
 impl Disk {
     pub fn create_zeoring_command(&self) -> String {
-        let main = String::from("cat /dev/urandom > ");
-        let mut request = main.clone();
-        request.push_str(&self.disk_name);
-        request
     }
 }
