@@ -15,21 +15,17 @@ fn main() {
         password: String::from(password),
     };
 
+    let mut disks: Vec<String> = Vec::new();
     let disks_data = server.execute_command("df -h --output=source | grep dev/");
-    let mut disks = Vec::new();
+    let begin = String::from("cat /dev/urandom >");
 
     for disk_name in disks_data.split(" ") {
-        let disk = Disk {
-            disk_name: disk_name.to_string(),
-        };
-        disks.push(disk)
+        disks.push(disk_name.to_string());
+        let command = format!("{} {}", &begin, disk_name);
     }
-    let command_e = "cat /dev/urandom >";
-    let command_creation =
-        |disk: Disk| -> String { disk.create_zeoring_command(&command_e) };
 
-    for disk in disks {
-        let command = command_creation(disk);
+    for disk in disks.iter() {
+        let command = format!("{} {}", begin.clone(), disk);
         println!("{}", command);
     }
 }

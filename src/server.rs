@@ -27,12 +27,7 @@ impl Server {
 }
 
 pub struct Disk {
-    pub disk_name: String,
+    pub name: String,
 }
 
-impl Disk {
-    pub fn create_zeoring_command(&self, command: &str) -> String {
-        let test = format!("{}{}", command, self.disk_name);
-        test
-    }
-}
+impl Disk {}
