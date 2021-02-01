@@ -14,17 +14,10 @@ fn main() {
     };
 
     let disks_data = server.execute_command("df -h --output=source | grep dev/");
+    let zeroed_commands = disks_data.replace("/dev/", "cat /dev/urandom > /dev/");
+    let separated_commands = zeroed_commands.split("\n");
 
-    let faki = disks_data.replace("/dev/","cat /dev/urandom > /dev/");
-
-
-    let quebo = disks_data.split("\n");
-
-    for x in quebo {
-        println!("{}",x)
+    for command in separated_commands {
+        println!("{}", command);
     }
-}
-
-fn print_type_of<T>(_: &T) {
-    println!("{}", std::any::type_name::<T>())
 }
