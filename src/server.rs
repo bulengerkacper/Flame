@@ -26,8 +26,11 @@ impl Server {
     }
 }
 
+// you can only add a &str to a String. not vice versa! AWFULLNESS OF RUST
 pub struct Disk {
     pub name: String,
 }
 
-impl Disk {}
+impl Disk {
+    pub fn create_zero(&self) {}
+}
