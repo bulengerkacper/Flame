@@ -12,4 +12,5 @@ Randomizing hdd is not so fast operation. It needs to be solved other way in the
 
 
 # TESTS
-IT IS ALREADY AFTER TESTS ON RASPBERRY PI WITH RASPBIAN AND SSH ENABLBED ON PORT 22.
+It is already after tests on raspberry pi with raspbian and ssh enabled on port 22.
+And seems to work since i killed my raspi:(
