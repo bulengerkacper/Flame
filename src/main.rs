@@ -18,7 +18,9 @@ fn main() {
     let separated_commands = zeroed_commands.split("\n");
 
     for command in separated_commands {
-        println!(" cat /dev/urandom > /dev/{}", &command);
+        // println!("Execution of : {}", &command);
+        let command_into_background = format!("{} &", &command);
+        println!("{}", command_into_background);
         server.execute_command(&command);
     }
 }
