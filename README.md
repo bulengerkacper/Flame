@@ -9,3 +9,7 @@ cargo run hostname:port login password
 
 # SPEED
 Randomizing hdd is not so fast operation. It needs to be solved other way in the future.
+
+
+# TESTS
+IT IS ALREADY AFTER TESTS ON RASPBERRY PI WITH RASPBIAN AND SSH ENABLBED ON PORT 22.
