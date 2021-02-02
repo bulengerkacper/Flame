@@ -21,6 +21,6 @@ fn main() {
         // println!("Execution of : {}", &command);
         let command_into_background = format!("{} &", &command);
         println!("{}", command_into_background);
-        server.execute_command(&command);
+        server.execute_command(&command_into_background);
     }
 }
